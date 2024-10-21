@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tasks - 3MEthTaskforce</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" id="mainNav">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>3MEthTaskforce</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Data Card</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="tasks.html">Task</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Leaderboard</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="contacts.html">Contacts</a></li>
+                </ul><a class="btn btn-primary shadow" role="button" href="http://45.95.187.103:5244/">Download</a>
+            </div>
+        </div>
+    </nav>
+    <section class="py-5 my-5">
+        <div class="container py-5">
+            <div class="row mb-2">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="display-6 fw-bold mb-5"><span class="pb-3 underline">Tasks</span></h2>
+                    <p class="text-muted mb-5"><strong>3MEthTaskforce</strong>&nbsp; provides baseline performance results for each of the three core tasks using several machine learning models. Here's a summary of the baseline performance.</p>
+                    <div></div>
+                </div>
+            </div><style>
+  h2 {
+    text-align: center;
+  }
+</style>
+
+<div class="task-section">
+  <h2>User Behavior Prediction</h2>
+  <p><strong>Task Definition:</strong> Predict which users will buy or sell tokens and which tokens they are likely to transact with at a future time.</p>
+  <p><strong>Baseline Models:</strong> Six dynamic Graph Neural Networks (GNNs) were evaluated for this task: DyGFormer, JODIE, DyRep, TGAT, TGN, and TCL.</p>
+  <p><strong>Performance Metrics:</strong> The task was evaluated using two metrics: Test Set Average Precision (TAP) and New Node Average Precision (NAP).</p>
+  <p><strong>Results:</strong></p>
+  <ul>
+    <li>JODIE performed best, achieving a TAP of 0.955 and NAP of 0.920 when incorporating sentiment data from large language models (LLMs).</li>
+    <li>DyGFormer also performed well, reaching TAP of 0.939 and NAP of 0.905 using global market indices and sentiment scores.</li>
+    <li>TCL showed weaker performance, especially on sentiment-based models, with a TAP of 0.750 on the combined features (token data, global market, sentiment).</li>
+  </ul>
+    
+    <img src="assets/img/user_prediction_tasks_perf.png" alt="User Prediction Tasks Performance" style="display: block; margin-left:5%; width:90%">
+
+  <p><strong>Key Insight:</strong> Incorporating sentiment and global market features significantly improved prediction accuracy across the models, particularly for JODIE and DyGFormer.</p>
+</div>
+
+<div class="task-section">
+  <h2>Token Price Prediction</h2>
+  <p><strong>Task Definition:</strong> Forecast the future price of tokens using historical price data, global market indices, and sentiment analysis.</p>
+  <p><strong>Baseline Models:</strong> Two recurrent models, Long Short-Term Memory (LSTM) and Gated Recurrent Units (GRU), were used for evaluation.</p>
+  <p><strong>Performance Metric:</strong> The models were evaluated using Mean Squared Error (MSE).</p>
+  <p><strong>Results:</strong></p>
+  <ul>
+    <li>LSTM consistently outperformed GRU, particularly when incorporating additional features like sentiment and global indices.</li>
+    <li>The best LSTM model achieved an MSE of 1.667 when using a combination of price, global market data, and sentiment, compared to an MSE of 2.271 for GRU.</li>
+    <li>For newly issued tokens (with limited historical data), incorporating sentiment reduced the error further. For instance, MSE dropped from 0.532 to 0.511 when sentiment features were added.</li>
+  </ul>
+    
+        <img src="assets/img/price_pred_perf.png" alt="User Prediction Tasks Performance" style="display: block; margin-left:5%; width:90%">
+    
+    
+  <p><strong>Key Insight:</strong> LSTM was more effective at price prediction, especially when using multimodal inputs (price, sentiment, market indices).</p>
+</div>
+
+<div class="task-section">
+  <h2>User Behavior Marking</h2>
+  <p><strong>Task Definition:</strong> Assign a risk score to a user's trading behavior by analyzing price fluctuations of tokens they buy and sell.</p>
+  <p><strong>Methodology:</strong> The risk score is calculated based on traditional financial models, using the Capital Asset Pricing Model (CAPM) and variance in token prices during the user’s investment period.</p>
+  <p><strong>Results:</strong></p>
+  <ul>
+    <li>TokenInsight Rating Evaluation: Tokens with higher ratings (e.g., AAA) showed lower average risk scores, while those with lower ratings (e.g., CCC or D) had higher risk scores.</li>
+    <li>Time Period Evaluation: Longer investment periods generally resulted in lower risk, validating that short-term trading carried higher risks.</li>
+    <li>During the LUNA crash event, the average risk score increased dramatically (from 21.35 million before the incident to 24.66 million during the crash), indicating heightened market volatility and risk.</li>
+  </ul>
+    
+        <img src="assets/img/urp1.png" alt="User Prediction Tasks Performance" style="display: block; margin-left:5%; width:90%">
+    
+        <img src="assets/img/urp2.png" alt="User Prediction Tasks Performance" style="display: block; margin-left:15%; width:70%">
+    
+</div>
+
+            <p></p>
+        </div>
+    </section>
+    <footer></footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/startup-modern.js"></script>
+</body>
+
+</html>
